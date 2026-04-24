@@ -61,15 +61,6 @@ waitForPort = 8081
 PORT = "8081"
 BASE_PATH = "/__mockup"
 
-[[workflows.workflow]]
-name = "Run app"
-mode = "sequential"
-author = 58142614
-
-[[workflows.workflow.tasks]]
-task = "shell.exec"
-args = "pip install streamlit pandas numpy scikit-learn && streamlit run app.py --server.port 3000 --server.address 0.0.0.0"
-
 [agent]
 stack = "PNPM_WORKSPACE"
 expertMode = true
