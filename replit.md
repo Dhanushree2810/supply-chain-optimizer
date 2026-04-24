@@ -1,27 +1,23 @@
-# Workspace
+# Smart Supply Chain Optimizer
 
 ## Overview
 
-pnpm workspace monorepo using TypeScript. Each package manages its own dependencies.
+A Streamlit web app that lets users upload shipment data (CSV), analyzes traffic and weather conditions, predicts delay risk (Low / Medium / High), and visualizes results in a dashboard with a risk-distribution bar chart.
 
 ## Stack
 
-- **Monorepo tool**: pnpm workspaces
-- **Node.js version**: 24
-- **Package manager**: pnpm
-- **TypeScript version**: 5.9
-- **API framework**: Express 5
-- **Database**: PostgreSQL + Drizzle ORM
-- **Validation**: Zod (`zod/v4`), `drizzle-zod`
-- **API codegen**: Orval (from OpenAPI spec)
-- **Build**: esbuild (CJS bundle)
+- **Language**: Python 3.11
+- **Framework**: Streamlit
+- **Data**: pandas
+- **Charts**: Plotly Express
 
-## Key Commands
+## Run
 
-- `pnpm run typecheck` — full typecheck across all packages
-- `pnpm run build` — typecheck + build all packages
-- `pnpm --filter @workspace/api-spec run codegen` — regenerate API hooks and Zod schemas from OpenAPI spec
-- `pnpm --filter @workspace/db run push` — push DB schema changes (dev only)
-- `pnpm --filter @workspace/api-server run dev` — run API server locally
+- Workflow `Start application` runs: `streamlit run app.py --server.port 5000`
+- Streamlit config in `.streamlit/config.toml` (port 5000, headless, CORS off)
 
-See the `pnpm-workspace` skill for workspace structure, TypeScript setup, and package details.
+## CSV Format
+
+Required columns: `traffic_level`, `weather`. Recommended: `shipment_id`, `origin`, `destination`.
+
+Risk is derived from a simple rule-based score over normalized traffic and weather values.
